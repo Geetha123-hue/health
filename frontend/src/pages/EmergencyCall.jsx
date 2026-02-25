@@ -88,7 +88,7 @@ const EmergencyCall = () => {
         setAiResponse('');
 
         try {
-            const data = await api.ai.emergencyChat(transcript);
+            const data = await api.chat.emergencyChat(transcript);
             setAiResponse(data.reply);
 
             // Speak response text-to-speech if supported
