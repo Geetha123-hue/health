@@ -7,6 +7,7 @@ import Analytics from './pages/Analytics';
 import EmergencyCall from './pages/EmergencyCall';
 import Navbar from './components/Navbar';
 import Chatbot from './components/Chatbot';
+import PredictionResult from './pages/PredictionResult';
 
 const PrivateRoute = ({ children }) => {
   const token = localStorage.getItem('token');

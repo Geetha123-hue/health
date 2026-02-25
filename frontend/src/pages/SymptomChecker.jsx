@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Mic, Square, Activity, AlertCircle } from 'lucide-react';
 import { api } from '../services/api';
 
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
 const SymptomChecker = () => {
     const [isListening, setIsListening] = useState(false);
     const [transcript, setTranscript] = useState('');
@@ -12,8 +14,6 @@ const SymptomChecker = () => {
     const location = useLocation();
     const category = location.state?.category || '';
 
-    // Setup Speech Recognition
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = useRef(null);
 
     useEffect(() => {

@@ -34,6 +34,7 @@ const Chatbot = () => {
 
             setMessages(prev => [...prev, { text: response.reply, isBot: true }]);
         } catch (error) {
+            console.error(error);
             setMessages(prev => [...prev, { text: "Sorry, I am having trouble connecting to my servers.", isBot: true }]);
         } finally {
             setIsTyping(false);
