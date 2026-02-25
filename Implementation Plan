@@ -1,0 +1,38 @@
+# Goal Description
+Develop an Urban AI Healthcare Web Application offering symptom recognition, disease prediction, preventive care guidance, and emergency support. The system will consist of a React frontend, a Node.js/Express backend for business logic, and a Python microservice for AI inference.
+
+## User Review Required
+> [!NOTE]
+> Since we do not have external API keys like Twilio for OTP or OpenAI for Whisper, we will implement OTP via a mock simulated service and Voice-to-Text via the native Browser Web Speech API.
+
+## Proposed Changes
+
+### Database Layer
+- Set up a lightweight **SQLite** database to prevent complex local setups, using tables for `Users`, `Symptoms`, `Predictions`, and `Hospitals`.
+
+### Backend Service (Node.js / Express)
+- `server.js`: Entry point
+- **Authentication**: Endpoints for `/signup` and `/login` (using local JWT).
+- **Domain logic**: Routes for user profile CRUD and mock analytics data generation.
+- **Proxy**: Forwarding prediction requests to the Python AI service.
+
+### AI Microservice (Python / FastAPI)
+- `main.py`: Entry point exposing the `/predict` endpoint.
+- `model.py`: Script to generate a dummy dataset of symptoms mapped to diseases and train a `scikit-learn` Random Forest Classifier. Once trained, the model will run inference on user symptoms and return disease plus dummy medications.
+
+### Frontend Service (React / Vite)
+- **UI Architecture**: Built purely with Vanilla CSS for a dynamic, vibrant, modern, high aesthetic design (glassmorphism, smooth gradients, subtle animations).
+- **Core Pages**:
+  - `Login / Signup`: Engaging and smooth authentication flows.
+  - `Dashboard`: Categories and visually pleasing navigation.
+  - `Symptom Checker`: Native Web Speech API integration for voice-to-text.
+  - `Predictions`: A visually rich breakdown of severity levels and healthcare guidance.
+  - `Analytics`: Simple metrics visualized for admins or general trends.
+
+## Verification Plan
+### Automated Tests
+- Run `npm run dev` and python uvicorn.
+- Test endpoint health (Backend & AI).
+
+### Manual Verification
+- Walk through the user flow: Create an account -> View Dashboard -> Speak symptoms using Voice Input -> View AI-Predicted Result -> View disease severity and recommendations.
